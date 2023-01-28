@@ -11,7 +11,7 @@ namespace RockPaperScissors
     {
         public static Random randomer = new Random();
         public string Name { get; private set; }
-        public int Points { get; private set; }
+        public int Points { get; set; }
         public string Hand { get; set; }
         
         public Player(string name, int points, string hand)
@@ -44,5 +44,27 @@ namespace RockPaperScissors
             if (aiHand == 3) return "Scissors";
             return null;
         }
+
+        //rock     1 
+        //paper    2
+        //scissors 3
+        public static string ShowHandPoint(int convertedDigit, int AIDigit)
+        {
+            if (convertedDigit == AIDigit) return "Tie";
+            else if (convertedDigit == 1 && AIDigit == 2) return "AI Wins"; // points?
+            else if (convertedDigit == 2 && AIDigit == 3) return "AI Wins"; // points?
+            else if (convertedDigit == 3 && AIDigit == 1) return "AI Wins"; // points?
+            else
+                return "Bob Wins";
+        }
+
+        public static int PointCalculation(string result)
+        {
+            if (result == "Bob Wins") return 1;
+
+            if (result == "AI Wins") return 0;
+            return 0;
+        }
+        //Engine.ShowHandPoint(Player.HandToDigitConversion(Bob.Hand), Player.HandToDigitConversion(AI.Hand));
     }
 }

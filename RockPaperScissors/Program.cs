@@ -27,7 +27,7 @@ namespace RockPaperScissors
                 Console.WriteLine(Bob.PlayerInfo);
 
 
-                AI.Hand = Player.AiHand(random.Next(1, 4));
+                AI.Hand = Player.NumberToHandTranslation(random.Next(1, 4));
 
                 Console.Write("\nSelect 'R' for Rock, 'P' for Paper,'S' for Scissors: ");
                 char key = Char.ToUpper(Console.ReadKey().KeyChar);
@@ -47,7 +47,7 @@ namespace RockPaperScissors
                     case '0':
                         Bob.Hand = "random";
                         Player.HandToDigitConversion(Bob.Hand);
-                        Bob.Hand = Player.AiHand(Player.HandToDigitConversion(Bob.Hand));
+                        Bob.Hand = Player.NumberToHandTranslation(Player.HandToDigitConversion(Bob.Hand));
                         break;
                     default:
                         return;
@@ -58,7 +58,16 @@ namespace RockPaperScissors
             }
         }
 
-        public static int start(int a, string b, string c )
+        /// <summary>
+        /// Game's point calculation function.
+        /// Functions purpose is simply for visual clarity purposes.
+        /// This function should NOT be used outside of this class.
+        /// </summary>
+        /// <param name="a">Player's Points.</param>
+        /// <param name="b">Player's Hand.</param>
+        /// <param name="c">AI's Hand.</param>
+        /// <returns>Points if any to be added.</returns>
+        private static int start(int a, string b, string c )
         {            
             // Does? This needs to happen internally in Player
             int e = Player.PointCalculation(Player.ShowHandPoint(Player.HandToDigitConversion(b), Player.HandToDigitConversion(c)));

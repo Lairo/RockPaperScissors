@@ -120,7 +120,11 @@ namespace RockPaperScissors
                 return "Bob Wins";
             }
         }
-
+        /// <summary>
+        /// Point based on result.
+        /// </summary>
+        /// <param name="result">Result.</param>
+        /// <returns>A point to player when victory condition is met.</returns>
         public static int PointCalculation(string result)
         {
             if (result == "Bob Wins") return 1;

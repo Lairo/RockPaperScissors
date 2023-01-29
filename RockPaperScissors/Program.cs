@@ -23,10 +23,7 @@ namespace RockPaperScissors
         {
             while (true)
             {
-                //Player Info??
                 Console.WriteLine(Bob.PlayerInfo);
-
-
                 AI.Hand = Player.NumberToHandTranslation(random.Next(1, 4));
 
                 Console.Write("\nSelect 'R' for Rock, 'P' for Paper,'S' for Scissors: ");
@@ -54,7 +51,7 @@ namespace RockPaperScissors
                 }
 
                 Console.WriteLine($"\n\n {Bob.Name}'s <= {Bob.Hand} vs {AI.Hand} =>{AI.Name}'s ");
-                Bob.Points += start(Bob.Points, Bob.Hand, AI.Hand);
+                Bob.Points += Start(Bob.Hand, AI.Hand);
             }
         }
 
@@ -63,14 +60,13 @@ namespace RockPaperScissors
         /// Functions purpose is simply for visual clarity purposes.
         /// This function should NOT be used outside of this class.
         /// </summary>
-        /// <param name="a">Player's Points.</param>
-        /// <param name="b">Player's Hand.</param>
-        /// <param name="c">AI's Hand.</param>
+        /// <param name="a">Player's Hand.</param>
+        /// <param name="b">AI's Hand.</param>
         /// <returns>Points if any to be added.</returns>
-        private static int start(int a, string b, string c )
+        private static int Start(string a, string b )
         {            
             // Does? This needs to happen internally in Player
-            int e = Player.PointCalculation(Player.ShowHandPoint(Player.HandToDigitConversion(b), Player.HandToDigitConversion(c)));
+            int e = Player.PointCalculation(Player.ShowHandPoint(Player.HandToDigitConversion(a), Player.HandToDigitConversion(b)));
             return e;
         }
     }

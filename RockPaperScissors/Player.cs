@@ -10,9 +10,28 @@ namespace RockPaperScissors
     internal class Player
     {
         public static Random randomer = new Random();
-        public string Name { get; private set; }
-        public int Points { get; set; }
-        public string Hand { get; set; }
+
+        public string name;
+        public string Name
+        { 
+            get { return name; }
+            set { name = value;}
+        }
+
+        private int points;
+        public int Points
+        { 
+            get { return points; }
+            set { points = value; }
+        }       
+
+        private string hand;
+
+        public string Hand
+        {
+            get { return hand; }
+            set { hand = value; }
+        }
         
         public Player(string name, int points, string hand)
         {
@@ -25,11 +44,10 @@ namespace RockPaperScissors
             get { return $"Player {Name} has {Points} points."; }
         }
         
-            
-            
         public static int HandToDigitConversion(string Hand)
         {
             int guido = randomer.Next(1, 4);
+
 
             if (Hand == "Rock") return 1;
             else if (Hand == "Paper") return 2;
@@ -55,7 +73,10 @@ namespace RockPaperScissors
             else if (convertedDigit == 2 && AIDigit == 3) return "AI Wins"; // points?
             else if (convertedDigit == 3 && AIDigit == 1) return "AI Wins"; // points?
             else
+            {
+                Console.WriteLine($"You won +1.");
                 return "Bob Wins";
+            }
         }
 
         public static int PointCalculation(string result)
@@ -65,6 +86,5 @@ namespace RockPaperScissors
             if (result == "AI Wins") return 0;
             return 0;
         }
-        //Engine.ShowHandPoint(Player.HandToDigitConversion(Bob.Hand), Player.HandToDigitConversion(AI.Hand));
     }
 }

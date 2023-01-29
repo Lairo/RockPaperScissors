@@ -18,10 +18,9 @@ namespace RockPaperScissors
 
         public static Player Bob = new Player("Bob", 0, "Hand");
         public static Player AI = new Player("CPU", 0, "");
+        
         static void Main(string[] args)
         {
-
-            
             while (true)
             {
                 //Player Info??
@@ -38,32 +37,32 @@ namespace RockPaperScissors
                 {
                     case 'R':
                         Bob.Hand = "Rock";
-                        Console.WriteLine($"\n\n {Bob.Name}'s <= {Bob.Hand} vs {AI.Hand} =>{AI.Name}'s " );
-                        string result = Player.ShowHandPoint(Player.HandToDigitConversion(Bob.Hand), Player.HandToDigitConversion(AI.Hand));
-
                         break;
-
                     case 'P':
                         Bob.Hand = "Paper";
-                        Console.WriteLine($"\n\n {Bob.Name}'s <= {Bob.Hand} vs {AI.Hand} =>{AI.Name}'s ");
-                        Player.HandToDigitConversion(Bob.Hand);
                         break;
-
                     case 'S':
                         Bob.Hand = "Scissors";
-                        Console.WriteLine($"\n\n {Bob.Name}'s <= {Bob.Hand} vs {AI.Hand} =>{AI.Name}'s ");
-                        Bob.Points += Player.PointCalculation(Player.ShowHandPoint(Player.HandToDigitConversion(Bob.Hand), Player.HandToDigitConversion(AI.Hand)));
- // This needs to happen internally in Player
                         break;
                     case '0':
                         Bob.Hand = "random";
-                        Console.WriteLine($"\n\n {Bob.Name}'s <= {Bob.Hand} vs {AI.Hand} =>{AI.Name}'s ");                        
                         Player.HandToDigitConversion(Bob.Hand);
+                        Bob.Hand = Player.AiHand(Player.HandToDigitConversion(Bob.Hand));
                         break;
                     default:
                         return;
                 }
+
+                Console.WriteLine($"\n\n {Bob.Name}'s <= {Bob.Hand} vs {AI.Hand} =>{AI.Name}'s ");
+                Bob.Points += start(Bob.Points, Bob.Hand, AI.Hand);
             }
+        }
+
+        public static int start(int a, string b, string c )
+        {            
+            // Does? This needs to happen internally in Player
+            int e = Player.PointCalculation(Player.ShowHandPoint(Player.HandToDigitConversion(b), Player.HandToDigitConversion(c)));
+            return e;
         }
     }
 }
